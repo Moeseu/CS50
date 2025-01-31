@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+<h1>Search for symbol</h1>
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-50" name="symbol" placeholder="Search" type="text" required>
+        </div>
+        {% if error %}
+            <p class="text-danger text-center">{{ error }}</p>
+        {% endif %}
+        <button class="btn btn-primary w-25" type="submit">Search</button>
+    </form>
+
+    {% if quote %}
+    <div class="mt-3 mx-auto w-50">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ quote.symbol }}</td>
+                    <td>{{ quote.name }}</td>
+                    <td>${{ quote.price }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}

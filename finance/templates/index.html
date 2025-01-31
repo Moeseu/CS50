@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My account
+{% endblock %}
+
+{% block main %}
+    <div class="user-info">
+        <h2 class="username">{{ user_info.username }}</h2>
+        <div class="balance-box">
+            <p>Cash: ${{ "%.2f"|format(user_info.cash) }}</p>
+        </div>
+    </div>
+    {% if holdings %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for holding in holdings %}
+                <tr>
+                    <td>{{ holding.symbol }}</td>
+                    <td>{{ holding.shares }}</td>
+                    <td>{{ "%.2f"|format(holding.price) }}</td>
+                    <td>{{ "%.2f"|format(holding.total) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>The value of all shares</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ "%.2f"|format(sum) }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    {% endif %}
+{% endblock %}

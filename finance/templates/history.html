@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center mb-4">History</h1>
+
+    {% if transactions %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Success</th>
+                    <th>Previous balance</th>
+                    <th>New balance</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.symbol }}</td>
+                    <td>{{ transaction.shares }}</td>
+                    <td>${{ "%.2f"|format(transaction.price) }}</td>
+                    <td>${{ "%.2f"|format(transaction.price * transaction.shares) }}</td>
+                    {% if transaction.is_successful %}
+                        <td>Successful</td>
+                    {% else %}
+                        <td>Fail</td>
+                    {% endif %}
+                    <td>${{ "%.2f"|format(transaction.previous_balance) }}</td>
+                    <td>${{ "%.2f"|format(transaction.new_balance) }}</td>
+                    <td>{{ transaction.transaction_date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center">You haven't made a transaction yet.</p>
+    {% endif %}
+{% endblock %}

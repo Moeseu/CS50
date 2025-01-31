@@ -1,0 +1,11 @@
+sort1 uses:Bubble Sort
+
+How do you know?: it is the fastest in the worst case scenario
+
+sort2 uses: Merge Sort
+
+How do you know?: It recursively divides the array into halves and merges them in sorted order
+
+sort3 uses: Selection sort
+
+How do you know?: It selects the smallest element from the unsorted part and moves it to the sorted part

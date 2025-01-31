@@ -1,0 +1,5 @@
+ul, a, div, img, button, li, h1, h2, p, iframe, hr
+
+href, id, class, onclick, src, width, height, allowfullscreen
+
+I used JavaScript and Bootstrap for the multiple choice question and for the image change buttons

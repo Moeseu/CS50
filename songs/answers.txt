@@ -1,0 +1,1 @@
+It is not entirely clear how to make the code more readable. Of course, you can write it in one line, but it's not like in C, where it's quite obvious, and not Phyton, where it's mandatory

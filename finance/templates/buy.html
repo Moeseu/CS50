@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+<h1>Buy</h1>
+<div class="balance-box">
+    <p>Cash: ${{ "%.2f"|format(user_info.cash) }}</p>
+</div>
+    <form action="/buy" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-50" name="symbol" placeholder="Symbol" type="text" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-50" name="shares" placeholder="Shares" type="number" min=1 required>
+        </div>
+        {% if error %}
+            <p class="text-danger text-center">{{ error }}</p>
+        {% endif %}
+        {% if stock %}
+            <p class="text-center">{{ stock }}</p>
+        {% endif %}
+        <button class="btn btn-secondary w-25" type="submit" name="update">Update</button>
+        <button class="btn btn-primary w-25" type="submit">Buy</button>
+    </form>
+{% endblock %}

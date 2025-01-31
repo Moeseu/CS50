@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <div class="container text-center">
+        <h2 class="mb-4">Sell</h2>
+
+        <p class="mb-4">Cash: ${{ "%.2f"|format(user_info.cash) }}</p>
+
+        {% if error %}
+            <p class="text-danger">{{ error }}</p>
+        {% endif %}
+
+        {% if stock %}
+            <p class="text-success">{{ stock }}</p>
+        {% endif %}
+
+        {% if holdings %}
+            <form action="/sell" method="post" class="mx-auto" style="max-width: 400px;">
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Choose a symbol to sell:</label>
+                    <select name="stock" id="stock" class="form-control mx-auto">
+                        {% for holding in holdings %}
+                            <option value="{{ holding.symbol }}">{{ holding.symbol }} ({{ holding.shares }} shares)</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="shares" class="form-label">Number of shares:</label>
+                    <input class="form-control mx-auto" id="shares" name="shares" type="number" min="1" required>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-secondary w-25 me-2" type="submit" name="action" value="update">Update</button>
+                    <button class="btn btn-primary w-25" type="submit" name="action" value="sell">Sell</button>
+                </div>
+            </form>
+        {% else %}
+            <p>You have no stocks to sell.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+
+<!-- https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select -->
